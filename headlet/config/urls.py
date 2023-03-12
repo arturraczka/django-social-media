@@ -19,13 +19,15 @@ from django.conf.urls.static import static
 from .settings import DEBUG, STATIC_URL, STATIC_ROOT
 from apps.routers import router
 from apps.users import urls as user_urls
-from apps.posts.views import PostListView
+from apps.posts.views import PostListView , PostViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', include(user_urls)),
-    path('user-posts/<str:slug>/', PostListView.as_view(), name='user-posts'),
+    path('profile/<str:slug>/', PostListView.as_view(), name='profile'),
+    path('profile/<str:slug>/<str:pk>/', PostViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}),
+         name = 'post'),
 ]
 
 if DEBUG:

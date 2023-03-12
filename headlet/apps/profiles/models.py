@@ -20,7 +20,5 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            # Newly created object, so set slug
             self.profile_slug = slugify(self.user.get_username())
-
         super(Profile, self).save(*args, **kwargs)

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 
 class Post(models.Model):
-    user_profile = models.ForeignKey(Profile, on_delete = models.CASCADE, default = None)
+    user_profile = models.ForeignKey(Profile, on_delete = models.CASCADE, default = None, related_name='user_posts')
     body = models.CharField(max_length = 1200, blank = False)
     created_at = models.DateTimeField(auto_now_add=True)
 
